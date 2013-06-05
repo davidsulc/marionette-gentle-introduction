@@ -1,6 +1,6 @@
 ContactManager.module('ContactsApp.List', function(List, ContactManager, Backbone, Marionette, $, _){
   List.Controller = {
-    listContacts: function(){
+    listContacts: function(criterion){
       var loadingView = new ContactManager.Common.Views.Loading();
       ContactManager.mainRegion.show(loadingView);
 
@@ -24,12 +24,20 @@ ContactManager.module('ContactsApp.List', function(List, ContactManager, Backbon
           }
         });
 
+        if(criterion){
+          filteredContacts.filter(criterion);
+          contactsListPanel.once("show", function(){
+            contactsListPanel.triggerMethod("set:filter:criterion", criterion);
+          });
+        }
+
         var contactsListView = new List.Contacts({
           collection: filteredContacts
         });
 
         contactsListPanel.on("contacts:filter", function(filterCriterion){
           filteredContacts.filter(filterCriterion);
+          ContactManager.trigger("contacts:filter", filterCriterion);
         });
 
         contactsListLayout.on("show", function(){

@@ -10,14 +10,17 @@ ContactManager.module('ContactsApp', function(ContactsApp, ContactManager, Backb
   var API = {
     listContacts: function(criterion){
       ContactsApp.List.Controller.listContacts(criterion);
+      ContactManager.execute("set:active:header", "contacts");
     },
 
     showContact: function(id){
       ContactsApp.Show.Controller.showContact(id);
+      ContactManager.execute("set:active:header", "contacts");
     },
 
     editContact: function(id){
       ContactsApp.Edit.Controller.editContact(id);
+      ContactManager.execute("set:active:header", "contacts");
     }
   };
 

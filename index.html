@@ -10,19 +10,28 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <span class="brand">Contact manager</span>
-        </div>
-      </div>
-    </div>
+    <div id="header-region"></div>
 
     <div id="main-region" class="container">
       <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
     </div>
 
     <div id="dialog-region"></div>
+
+    <script type="text/template" id="header-template">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#contacts">Contact manager</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav"></ul>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="header-link">
+      <a href="#<%= url %>"><%= name %></a>
+    </script>
 
     <script type="text/template" id="contact-list">
       <thead>
@@ -122,6 +131,7 @@
     <script src="./assets/js/vendor/json2.js"></script>
     <script src="./assets/js/vendor/underscore.js"></script>
     <script src="./assets/js/vendor/backbone.js"></script>
+    <script src="./assets/js/vendor/backbone.picky.js"></script>
     <script src="./assets/js/vendor/backbone.syphon.js"></script>
     <script src="./assets/js/vendor/backbone.localstorage.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
@@ -132,6 +142,7 @@
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/apps/config/storage/localstorage.js"></script>
     <script src="./assets/js/entities/common.js"></script>
+    <script src="./assets/js/entities/header.js"></script>
     <script src="./assets/js/entities/contact.js"></script>
     <script src="./assets/js/common/views.js"></script>
 
@@ -148,6 +159,10 @@
     <script src="./assets/js/apps/about/about_app.js"></script>
     <script src="./assets/js/apps/about/show/show_view.js"></script>
     <script src="./assets/js/apps/about/show/show_controller.js"></script>
+
+    <script src="./assets/js/apps/header/header_app.js"></script>
+    <script src="./assets/js/apps/header/list/list_view.js"></script>
+    <script src="./assets/js/apps/header/list/list_controller.js"></script>
 
     <script type="text/javascript">
       ContactManager.start();

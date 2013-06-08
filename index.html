@@ -6,10 +6,60 @@
     <link href="./assets/css/bootstrap.css" rel="stylesheet">
     <link href="./assets/css/application.css" rel="stylesheet">
     <link href="./assets/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+    <style type="text/css">
+
+      /* Sticky footer styles
+      -------------------------------------------------- */
+
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+      
+      /* revert CSS rule from applications.css */
+      body {
+        padding-top: 0px;
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+      
+      /* make room for navbar */
+      #wrap > .container {
+        padding-top: 60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        min-height: 155px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+        margin-top: -155px;
+      }
+      
+      .container .footer-message {
+        margin: 20px 0;
+      }
+      
+      #footer .warning {
+        color:red;
+      }
+    </style>
   </head>
 
   <body>
 
+    <div id="wrap">
+    <div class="container">
     <div id="app-container">
       <div id="header-region"></div>
       <div id="main-region" class="container">
@@ -17,6 +67,17 @@
       </div>
 
       <div id="dialog-region"></div>
+    </div>
+
+    <div id="push"><!--//--></div>
+    </div> <!-- container -->
+    </div> <!-- wrap -->
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted footer-message" >This is the application developed in the <a href="https://leanpub.com/marionette-gentle-introduction">Backbone.Marionette.js: A Gentle Introduction</a> book (<a href="http://samples.leanpub.com/marionette-gentle-introduction-sample.pdf">free sample</a>). It is designed to demonstrate a full Marionette application for learning purposes and uses local storage for persistence. (If there are no contacts, 3 are created for convenience.)</p>
+        <p class="muted"><span class="warning">There is a known bug:</span> creating a contact, navigating away, and pressing the browser's "back" button will not display the new contact, but refreshing the page will display the created contact properly. This is due to how the browser handles local storage, and will <strong>not</strong> happen when using a remote API for persistence.</p>
+      </div>
     </div>
 
     <script type="text/template" id="header-template">

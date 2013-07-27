@@ -73,10 +73,17 @@ ContactManager.module('ContactsApp.List', function(List, ContactManager, Backbon
     }
   });
 
+  var NoContactsView = Marionette.ItemView.extend({
+    template: "#contact-list-none",
+    tagName: "tr",
+    className: "alert"
+  });
+
   List.Contacts = Marionette.CompositeView.extend({
     tagName: "table",
     className: "table table-hover",
     template: "#contact-list",
+    emptyView: NoContactsView,
     itemView: List.Contact,
     itemViewContainer: "tbody",
 

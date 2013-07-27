@@ -44,7 +44,7 @@
           <i class="icon-eye-open"></i>
           Show
         </a>
-        <a href="#contacts/<%= id %>/edit" class="btn btn-small js-edit">
+        <a href="#contacts/<%- id %>/edit" class="btn btn-small js-edit">
           <i class="icon-pencil"></i>
           Edit
         </a>
@@ -90,6 +90,15 @@
         </div>
         <button class="btn js-submit">Save</button>
       </form>
+    </script>
+
+    <script type="text/template" id="contact-list-layout">
+      <div id="panel-region"></div>
+      <div id="contacts-region"></div>
+    </script>
+
+    <script type="text/template" id="contact-list-panel">
+      <button class="btn btn-primary js-new">New contact</button>
     </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>

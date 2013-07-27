@@ -21,8 +21,8 @@
       <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
     </div>
 
-    <script type="text/template" id="static-template">
-      <p>This is text that was rendered by our Marionette app.</p>
+    <script type="text/template" id="contact-template">
+      <p><%= firstName %> <%= lastName %></p>
     </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>
@@ -38,13 +38,24 @@
         mainRegion: "#main-region"
       });
 
-      ContactManager.StaticView = Marionette.ItemView.extend({
-        template: "#static-template"
+      ContactManager.Contact = Backbone.Model.extend({});
+
+      ContactManager.ContactView = Marionette.ItemView.extend({
+        template: "#contact-template"
       });
 
       ContactManager.on("initialize:after", function(){
-        var staticView = new ContactManager.StaticView();
-        ContactManager.mainRegion.show(staticView);
+        var alice = new ContactManager.Contact({
+          firstName: "Alice",
+          lastName: "Arten",
+          phoneNumber: "555-0184"
+        });
+
+        var aliceView = new ContactManager.ContactView({
+          model: alice
+        });
+
+        ContactManager.mainRegion.show(aliceView);
       });
 
       ContactManager.start();

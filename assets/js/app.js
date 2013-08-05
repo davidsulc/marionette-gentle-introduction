@@ -2,7 +2,9 @@ var ContactManager = new Marionette.Application();
 
 ContactManager.addRegions({
   mainRegion: "#main-region",
-  dialogRegion: "#dialog-region"
+  dialogRegion: Marionette.Region.Dialog.extend({
+    el: "#dialog-region"
+  })
 });
 
 ContactManager.navigate = function(route,  options){

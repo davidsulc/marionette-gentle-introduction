@@ -29,7 +29,7 @@ ContactManager.module('ContactsApp.List', function(List, ContactManager, Backbon
     },
 
     onSetFilterCriterion: function(criterion){
-      $(this.ui.criterion).val(criterion);
+      this.ui.criterion.val(criterion);
     }
   });
 

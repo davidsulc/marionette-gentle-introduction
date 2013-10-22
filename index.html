@@ -17,9 +17,15 @@
       </div>
     </div>
 
-    <div class="container">
-      <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+    <div id="app-container">
+      <div id="main-region" class="container">
+        <p>Here is static content in the web page. You'll notice that it gets replaced by our app as soon as we start it.</p>
+      </div>
     </div>
+
+    <script type="text/template" id="static-template">
+      <p>This is text that was rendered by our Marionette app.</p>
+    </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>
     <script src="./assets/js/vendor/json2.js"></script>
@@ -27,5 +33,31 @@
     <script src="./assets/js/vendor/backbone.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
 
+    <script type="text/javascript">
+      var ContactManager = new Marionette.Application();
+
+      ContactManager.StaticView = Marionette.ItemView.extend({
+        template: "#static-template"
+      });
+
+      ContactManager.on("before:start", function(){
+        var RegionContainer = Marionette.LayoutView.extend({
+          el: "#app-container",
+
+          regions: {
+            main: "#main-region"
+          }
+        });
+
+        ContactManager.regions = new RegionContainer();
+      });
+
+      ContactManager.on("start", function(){
+        var staticView = new ContactManager.StaticView();
+        ContactManager.regions.main.show(staticView);
+      });
+
+      ContactManager.start();
+    </script>
   </body>
 </html>

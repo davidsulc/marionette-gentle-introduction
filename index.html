@@ -23,14 +23,25 @@
 
     <script type="text/template" id="contact-list">
       <thead>
-        <tr><th>First Name</th><th>Last Name</th></tr>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th></th>
+        </tr>
       </thead>
       <tbody>
       </tbody>
     </script>
 
     <script type="text/template" id="contact-list-item">
-      <td><%- firstName %></td><td><%- lastName %></td>
+      <td><%- firstName %></td>
+      <td><%- lastName %></td>
+      <td>
+        <button class="btn btn-small js-delete">
+          <i class="icon-remove"></i>
+          Delete
+        </button>
+      </td>
     </script>
 
     <script src="./assets/js/vendor/jquery.js"></script>

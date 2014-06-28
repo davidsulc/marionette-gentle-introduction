@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <script type="text/template" id="contact-template">
+    <script type="text/template" id="contact-list-item">
       <p><%- firstName %> <%- lastName %></p>
     </script>
 
@@ -38,8 +38,18 @@
 
       ContactManager.Contact = Backbone.Model.extend({});
 
-      ContactManager.ContactView = Marionette.ItemView.extend({
-        template: "#contact-template"
+      ContactManager.ContactCollection = Backbone.Collection.extend({
+        model: ContactManager.Contact
+      });
+
+      ContactManager.ContactItemView = Marionette.ItemView.extend({
+        tagName: "li",
+        template: "#contact-list-item"
+      });
+
+      ContactManager.ContactsView = Marionette.CollectionView.extend({
+        tagName: "ul",
+        childView: ContactManager.ContactItemView
       });
 
       ContactManager.on("before:start", function(){
@@ -55,17 +65,29 @@
       });
 
       ContactManager.on("start", function(){
-        var alice = new ContactManager.Contact({
-          firstName: "Alice",
-          lastName: "Arten",
-          phoneNumber: "555-0184"
+        var contacts = new ContactManager.ContactCollection([
+          {
+            firstName: "Bob",
+            lastName: "Brigham",
+            phoneNumber: "555-0163"
+          },
+          {
+            firstName: "Alice",
+            lastName: "Arten",
+            phoneNumber: "555-0184"
+          },
+          {
+            firstName: "Charlie",
+            lastName: "Campbell",
+            phoneNumber: "555-0129"
+          }
+        ]);
+
+        var contactsView = new ContactManager.ContactsView({
+          collection: contacts
         });
 
-        var aliceView = new ContactManager.ContactView({
-          model: alice
-        });
-
-        ContactManager.regions.main.show(aliceView);
+        ContactManager.regions.main.show(contactsView);
       });
 
       ContactManager.start();

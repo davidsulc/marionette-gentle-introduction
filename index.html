@@ -33,64 +33,12 @@
     <script src="./assets/js/vendor/backbone.js"></script>
     <script src="./assets/js/vendor/backbone.marionette.js"></script>
 
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/entities/contact.js"></script>
+    <script src="./assets/js/apps/contacts/list/list_view.js"></script>
+    <script src="./assets/js/apps/contacts/list/list_controller.js"></script>
+
     <script type="text/javascript">
-      var ContactManager = new Marionette.Application();
-
-      ContactManager.Contact = Backbone.Model.extend({});
-
-      ContactManager.ContactCollection = Backbone.Collection.extend({
-        model: ContactManager.Contact,
-        comparator: "firstName"
-      });
-
-      ContactManager.ContactItemView = Marionette.ItemView.extend({
-        tagName: "li",
-        template: "#contact-list-item"
-      });
-
-      ContactManager.ContactsView = Marionette.CollectionView.extend({
-        tagName: "ul",
-        childView: ContactManager.ContactItemView
-      });
-
-      ContactManager.on("before:start", function(){
-        var RegionContainer = Marionette.LayoutView.extend({
-          el: "#app-container",
-
-          regions: {
-            main: "#main-region"
-          }
-        });
-
-        ContactManager.regions = new RegionContainer();
-      });
-
-      ContactManager.on("start", function(){
-        var contacts = new ContactManager.ContactCollection([
-          {
-            firstName: "Bob",
-            lastName: "Brigham",
-            phoneNumber: "555-0163"
-          },
-          {
-            firstName: "Alice",
-            lastName: "Arten",
-            phoneNumber: "555-0184"
-          },
-          {
-            firstName: "Charlie",
-            lastName: "Campbell",
-            phoneNumber: "555-0129"
-          }
-        ]);
-
-        var contactsView = new ContactManager.ContactsView({
-          collection: contacts
-        });
-
-        ContactManager.regions.main.show(contactsView);
-      });
-
       ContactManager.start();
     </script>
   </body>

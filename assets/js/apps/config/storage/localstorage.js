@@ -29,10 +29,10 @@ ContactManager.module("Entities", function(Entities, ContactManager, Backbone, M
   };
 
   var getEntity = function(constructorString){
-    var bits = constructorString.split("."),
+    var sections = constructorString.split("."),
         entity = window;
-    _.each(bits, function(bit){
-      entity = entity[bit];
+    _.each(sections, function(section){
+      entity = entity[section];
     });
     return entity;
   };

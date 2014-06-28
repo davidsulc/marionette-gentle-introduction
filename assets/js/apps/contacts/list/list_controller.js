@@ -12,7 +12,7 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
       });
 
       contactsListView.on("childview:contact:delete", function(childView, model){
-        contacts.remove(model);
+        model.destroy();
       });
 
       ContactManager.regions.main.show(contactsListView);
